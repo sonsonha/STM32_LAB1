@@ -31,9 +31,7 @@
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
-#define RED_LED_Time 5
-#define YELLOW_LED_Time 2
-#define GREEN_LED_Time 3
+
 /* USER CODE BEGIN PD */
 /* USER CODE END PD */
 
@@ -68,9 +66,9 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 
-	int RED_LED_Count = 0;
-	int YELLOW_LED_Count = 0;
-	int GREEN_LED_Count = 0;
+	int RED_LED_Count = 5;
+	int YELLOW_LED_Count = 2;
+	int GREEN_LED_Count = 3;
 	int RED_LED_Status = 1;
 	int YELLOW_LED_Status = 0;
 	int GREEN_LED_Status = 0;
@@ -107,10 +105,10 @@ int main(void)
     	  HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, RESET);
     	  HAL_GPIO_WritePin(YELLOW_LED_GPIO_Port, YELLOW_LED_Pin, SET);
     	  HAL_GPIO_WritePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin, SET);
-    	  RED_LED_Count += 1;
-    	  if (RED_LED_Count == RED_LED_Time) {
+    	  RED_LED_Count --;
+    	  if (RED_LED_Count <= 0) {
     		  HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);
-    		  RED_LED_Count = 0;
+    		  RED_LED_Count = 5;
     		  RED_LED_Status = 0;
     		  YELLOW_LED_Status = 1;
     		  GREEN_LED_Status = 0;
@@ -120,10 +118,10 @@ int main(void)
           	HAL_GPIO_WritePin(YELLOW_LED_GPIO_Port, YELLOW_LED_Pin, RESET);
           	HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);
           	HAL_GPIO_WritePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin, SET);
-          	  YELLOW_LED_Count += 1;
-          	  if (YELLOW_LED_Count == YELLOW_LED_Time) {
+          	  YELLOW_LED_Count --;
+          	  if (YELLOW_LED_Count <= 0) {
           		  HAL_GPIO_WritePin(YELLOW_LED_GPIO_Port, YELLOW_LED_Pin, SET);
-          		  YELLOW_LED_Count = 0;
+          		  YELLOW_LED_Count = 2;
           		  RED_LED_Status = 0;
           		YELLOW_LED_Status = 0;
           		GREEN_LED_Status = 1;
@@ -133,11 +131,11 @@ int main(void)
                 	  HAL_GPIO_WritePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin, RESET);
                 	  HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);
                 	  HAL_GPIO_WritePin(YELLOW_LED_GPIO_Port, YELLOW_LED_Pin, SET);
-                	  GREEN_LED_Count += 1;
-                	  if (GREEN_LED_Count == GREEN_LED_Time) {
+                	  GREEN_LED_Count --;
+                	  if (GREEN_LED_Count <=0) {
                 		  HAL_GPIO_WritePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin, SET);
                 		  HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, RESET);
-                		  GREEN_LED_Count = 0;
+                		  GREEN_LED_Count = 3;
                 		  RED_LED_Status = 1;
                 		  YELLOW_LED_Status = 0;
                 		  GREEN_LED_Status = 0;
