@@ -64,7 +64,20 @@ static void MX_GPIO_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	void clearALLClock () {
+		HAL_GPIO_WritePin(D1_GPIO_Port, D1_Pin, SET);
+		HAL_GPIO_WritePin(D2_GPIO_Port, D2_Pin, SET);
+		HAL_GPIO_WritePin(D3_GPIO_Port, D3_Pin, SET);
+		HAL_GPIO_WritePin(D4_GPIO_Port, D4_Pin, SET);
+		HAL_GPIO_WritePin(D5_GPIO_Port, D5_Pin, SET);
+		HAL_GPIO_WritePin(D6_GPIO_Port, D6_Pin, SET);
+		HAL_GPIO_WritePin(D7_GPIO_Port, D7_Pin, SET);
+		HAL_GPIO_WritePin(D8_GPIO_Port, D8_Pin, SET);
+		HAL_GPIO_WritePin(D9_GPIO_Port, D9_Pin, SET);
+		HAL_GPIO_WritePin(D10_GPIO_Port, D10_Pin, SET);
+        HAL_GPIO_WritePin(D11_GPIO_Port, D11_Pin, SET);
+	    HAL_GPIO_WritePin(D12_GPIO_Port, D12_Pin, SET);
+	}
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -140,10 +153,6 @@ int main(void)
 	  		  break;
 	  case 12:
 	  		  HAL_GPIO_WritePin(D12_GPIO_Port, D12_Pin, RESET);
-	  		  if (i > 12){
-		  		  i = 1;
-	  		  }
-
 	  		  break;
 	  }
 	  i++;
