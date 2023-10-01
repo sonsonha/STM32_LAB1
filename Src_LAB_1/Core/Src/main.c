@@ -140,10 +140,6 @@ int main(void)
 	  		  break;
 	  case 12:
 	  		  HAL_GPIO_WritePin(D12_GPIO_Port, D12_Pin, RESET);
-	  		  if (i > 12){
-		  		  i = 1;
-	  		  }
-
 	  		  break;
 	  }
 	  i++;
