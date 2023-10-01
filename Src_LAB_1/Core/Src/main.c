@@ -186,10 +186,51 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if( counter >= 10) counter = 0;
-	   display7SEG ( counter) ;
-	   HAL_Delay (1000) ;
-	   counter++;
+	  switch (current_Case) {
+	  	  case RED1_GREEN2:
+	  		  HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, RESET);
+	  		  HAL_GPIO_WritePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin, SET);
+	  		  HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, SET);
+	  		  HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, SET);
+	  		  HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, SET);
+	  		  HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, RESET);
+	  		  counter--;
+	  		  if (counter <= 0) {
+	  			  current_Case = RED1_YELLOW2;
+	  			  counter = 2;
+	  		  }
+	  		  break;
+	  	  case RED1_YELLOW2:
+	  		      HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, SET);
+	  	  		  HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, RESET);
+	  	  		  counter--;
+	  	  		  if (counter <= 0) {
+	  	  			  current_Case = GREEN1_RED2;
+	  	  			  counter = 3;
+	  	  		  }
+	  	  		break;
+	  	  case GREEN1_RED2:
+	  		          HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, SET);
+	  		          HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, SET);
+	  	  		      HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, RESET);
+	  	  		      HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, RESET);
+	  	  	  		  counter--;
+	  	  	  		  if (counter <= 0) {
+	  	  	  			  current_Case = YELLOW1_RED2;
+	  	  	  			  counter = 2;
+	  	  	  		  }
+	  	  	  		break;
+	  	  case YELLOW1_RED2:
+	  	  	  		      HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, SET);
+	  	  	  		      HAL_GPIO_WritePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin, RESET);
+	  	  	  	  		  counter--;
+	  	  	  	  		  if (counter <= 0) {
+	  	  	  	  			  current_Case = RED1_GREEN2;
+	  	  	  	  			  counter = 3;
+	  	  	  	  		  }
+	  	  	  	  	break;
+	  	  }
+	    	  	HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
