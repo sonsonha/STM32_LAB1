@@ -47,6 +47,7 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -72,7 +73,19 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  HAL_GPIO_WritePin(D1_GPIO_Port, D1_Pin, RESET);
+  HAL_GPIO_WritePin(D2_GPIO_Port, D2_Pin, SET);
+  HAL_GPIO_WritePin(D3_GPIO_Port, D3_Pin, SET);
+  HAL_GPIO_WritePin(D4_GPIO_Port, D4_Pin, SET);
+  HAL_GPIO_WritePin(D5_GPIO_Port, D5_Pin, SET);
+  HAL_GPIO_WritePin(D6_GPIO_Port, D6_Pin, SET);
+  HAL_GPIO_WritePin(D7_GPIO_Port, D7_Pin, SET);
+  HAL_GPIO_WritePin(D8_GPIO_Port, D8_Pin, SET);
+  HAL_GPIO_WritePin(D9_GPIO_Port, D9_Pin, SET);
+  HAL_GPIO_WritePin(D10_GPIO_Port, D10_Pin, SET);
+  HAL_GPIO_WritePin(D11_GPIO_Port, D11_Pin, SET);
+  HAL_GPIO_WritePin(D12_GPIO_Port, D12_Pin, SET);
+  int i = 1;
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -83,6 +96,7 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
+  MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -91,6 +105,47 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  switch (i) {
+	  case 1:
+		  HAL_GPIO_WritePin(D1_GPIO_Port, D1_Pin, RESET);
+		  break;
+	  case 2:
+		  HAL_GPIO_WritePin(D2_GPIO_Port, D2_Pin, RESET);
+		  break;
+	  case 3:
+		  HAL_GPIO_WritePin(D3_GPIO_Port, D3_Pin, RESET);
+		  break;
+	  case 4:
+		  HAL_GPIO_WritePin(D4_GPIO_Port, D4_Pin, RESET);
+		  break;
+	  case 5:
+	  	  HAL_GPIO_WritePin(D5_GPIO_Port, D5_Pin, RESET);
+	  	  break;
+	  case 6:
+	  		  HAL_GPIO_WritePin(D6_GPIO_Port, D6_Pin, RESET);
+	  		  break;
+	  case 7:
+	  		  HAL_GPIO_WritePin(D7_GPIO_Port, D7_Pin, RESET);
+	  		  break;
+	  case 8:
+	  		  HAL_GPIO_WritePin(D8_GPIO_Port, D8_Pin, RESET);
+	  		  break;
+	  case 9:
+	  		  HAL_GPIO_WritePin(D9_GPIO_Port, D9_Pin, RESET);
+	  		  break;
+	  case 10:
+	  		  HAL_GPIO_WritePin(D10_GPIO_Port, D10_Pin, RESET);
+	  		  break;
+	  case 11:
+	  		  HAL_GPIO_WritePin(D11_GPIO_Port, D11_Pin, RESET);
+	  		  break;
+	  case 12:
+	  		  HAL_GPIO_WritePin(D12_GPIO_Port, D12_Pin, RESET);
+	  		  break;
+	  }
+	  HAL_Delay(1000);
+	  i++;
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -131,6 +186,36 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_GPIO_Init(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+  /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, D1_Pin|D2_Pin|D3_Pin|D4_Pin
+                          |D5_Pin|D6_Pin|D7_Pin|D8_Pin
+                          |D9_Pin|D10_Pin|D11_Pin|D12_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : D1_Pin D2_Pin D3_Pin D4_Pin
+                           D5_Pin D6_Pin D7_Pin D8_Pin
+                           D9_Pin D10_Pin D11_Pin D12_Pin */
+  GPIO_InitStruct.Pin = D1_Pin|D2_Pin|D3_Pin|D4_Pin
+                          |D5_Pin|D6_Pin|D7_Pin|D8_Pin
+                          |D9_Pin|D10_Pin|D11_Pin|D12_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
 }
 
 /* USER CODE BEGIN 4 */
