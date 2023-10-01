@@ -64,7 +64,46 @@ static void MX_GPIO_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	void setNumberOnCLock (int NumofLed) {
+		switch (NumofLed){
+		case 0:
+			HAL_GPIO_WritePin(D1_GPIO_Port, D1_Pin, RESET);
+			break;
+		case 1:
+		    HAL_GPIO_WritePin(D2_GPIO_Port, D2_Pin, RESET);
+			break;
+		case 2:
+			HAL_GPIO_WritePin(D3_GPIO_Port, D3_Pin, RESET);
+			break;
+		case 3:
+		    HAL_GPIO_WritePin(D4_GPIO_Port, D4_Pin, RESET);
+			break;
+		case 4:
+			HAL_GPIO_WritePin(D5_GPIO_Port, D5_Pin, RESET);
+			break;
+		case 5:
+			HAL_GPIO_WritePin(D6_GPIO_Port, D6_Pin, RESET);
+			break;
+		case 6:
+			HAL_GPIO_WritePin(D7_GPIO_Port, D7_Pin, RESET);
+			break;
+		case 7:
+			HAL_GPIO_WritePin(D8_GPIO_Port, D8_Pin, RESET);
+			break;
+	    case 8:
+			HAL_GPIO_WritePin(D9_GPIO_Port, D9_Pin, RESET);
+			break;
+		case 9:
+			 HAL_GPIO_WritePin(D10_GPIO_Port, D10_Pin, RESET);
+			 break;
+		case 10:
+			 HAL_GPIO_WritePin(D11_GPIO_Port, D11_Pin, RESET);
+			 break;
+		case 11:
+			 HAL_GPIO_WritePin(D12_GPIO_Port, D12_Pin, RESET);
+			 break;
+		}
+	}
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -73,7 +112,6 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  int i = 1;
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -93,61 +131,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  switch (i) {
-	  case 1:
-		  HAL_GPIO_WritePin(D1_GPIO_Port, D1_Pin, RESET);
-		  HAL_GPIO_WritePin(D2_GPIO_Port, D2_Pin, SET);
-		  HAL_GPIO_WritePin(D3_GPIO_Port, D3_Pin, SET);
-		  HAL_GPIO_WritePin(D4_GPIO_Port, D4_Pin, SET);
-		  HAL_GPIO_WritePin(D5_GPIO_Port, D5_Pin, SET);
-		  HAL_GPIO_WritePin(D6_GPIO_Port, D6_Pin, SET);
-		  HAL_GPIO_WritePin(D7_GPIO_Port, D7_Pin, SET);
-		  HAL_GPIO_WritePin(D8_GPIO_Port, D8_Pin, SET);
-		  HAL_GPIO_WritePin(D9_GPIO_Port, D9_Pin, SET);
-		  HAL_GPIO_WritePin(D10_GPIO_Port, D10_Pin, SET);
-		  HAL_GPIO_WritePin(D11_GPIO_Port, D11_Pin, SET);
-		  HAL_GPIO_WritePin(D12_GPIO_Port, D12_Pin, SET);
-		  break;
-	  case 2:
-		  HAL_GPIO_WritePin(D2_GPIO_Port, D2_Pin, RESET);
-		  break;
-	  case 3:
-		  HAL_GPIO_WritePin(D3_GPIO_Port, D3_Pin, RESET);
-		  break;
-	  case 4:
-		  HAL_GPIO_WritePin(D4_GPIO_Port, D4_Pin, RESET);
-		  break;
-	  case 5:
-	  	  HAL_GPIO_WritePin(D5_GPIO_Port, D5_Pin, RESET);
-	  	  break;
-	  case 6:
-	  		  HAL_GPIO_WritePin(D6_GPIO_Port, D6_Pin, RESET);
-	  		  break;
-	  case 7:
-	  		  HAL_GPIO_WritePin(D7_GPIO_Port, D7_Pin, RESET);
-	  		  break;
-	  case 8:
-	  		  HAL_GPIO_WritePin(D8_GPIO_Port, D8_Pin, RESET);
-	  		  break;
-	  case 9:
-	  		  HAL_GPIO_WritePin(D9_GPIO_Port, D9_Pin, RESET);
-	  		  break;
-	  case 10:
-	  		  HAL_GPIO_WritePin(D10_GPIO_Port, D10_Pin, RESET);
-	  		  break;
-	  case 11:
-	  		  HAL_GPIO_WritePin(D11_GPIO_Port, D11_Pin, RESET);
-	  		  break;
-	  case 12:
-	  		  HAL_GPIO_WritePin(D12_GPIO_Port, D12_Pin, RESET);
-	  		  if (i > 12){
-		  		  i = 1;
-	  		  }
-
-	  		  break;
-	  }
-	  i++;
-	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
