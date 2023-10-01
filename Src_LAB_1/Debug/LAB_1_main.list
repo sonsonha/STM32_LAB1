@@ -106,23 +106,23 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
  8000158:	f000 f84c 	bl	80001f4 <MX_GPIO_Init>
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
-	  HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
- 800015c:	2120      	movs	r1, #32
+	  HAL_GPIO_TogglePin(YELLOW_LED_GPIO_Port, YELLOW_LED_Pin);
+ 800015c:	2140      	movs	r1, #64	; 0x40
  800015e:	4806      	ldr	r0, [pc, #24]	; (8000178 <main+0x2c>)
  8000160:	f000 fc02 	bl	8000968 <HAL_GPIO_TogglePin>
 	  HAL_Delay(2000);
  8000164:	f44f 60fa 	mov.w	r0, #2000	; 0x7d0
  8000168:	f000 f964 	bl	8000434 <HAL_Delay>
-	  HAL_GPIO_TogglePin(YELLOW_LED_GPIO_Port, YELLOW_LED_Pin);
- 800016c:	2140      	movs	r1, #64	; 0x40
+	  HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
+ 800016c:	2120      	movs	r1, #32
  800016e:	4802      	ldr	r0, [pc, #8]	; (8000178 <main+0x2c>)
  8000170:	f000 fbfa 	bl	8000968 <HAL_GPIO_TogglePin>
-	  HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
+	  HAL_GPIO_TogglePin(YELLOW_LED_GPIO_Port, YELLOW_LED_Pin);
  8000174:	e7f2      	b.n	800015c <main+0x10>
  8000176:	bf00      	nop
  8000178:	40010800 	.word	0x40010800
