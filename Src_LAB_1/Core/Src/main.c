@@ -110,7 +110,6 @@ int main(void)
 			  current_state = LED_YELLOW;
 			  counter = YELLOW_LED_Count;
 		  }
-//		  HAL_Delay(5000);
 		  break;
 	  case LED_YELLOW:
 	      HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);
@@ -121,7 +120,6 @@ int main(void)
 			  current_state = LED_GREEN;
 			  counter = GREEN_LED_Count;
 		  }
-//	  	  HAL_Delay(2000);
 	  	  break;
 	  case LED_GREEN:
 	      HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);
@@ -132,7 +130,6 @@ int main(void)
 			  current_state = LED_RED;
 			  counter = RED_LED_Count;
 		  }
-//	  	  HAL_Delay(3000);
 	  	  break;
 	  }
 

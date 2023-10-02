@@ -172,7 +172,6 @@ int main(void)
  80001b4:	68bb      	ldr	r3, [r7, #8]
  80001b6:	613b      	str	r3, [r7, #16]
 		  }
-//		  HAL_Delay(5000);
 		  break;
  80001b8:	e033      	b.n	8000222 <main+0xd6>
 	  case LED_YELLOW:
@@ -206,7 +205,6 @@ int main(void)
  80001e8:	687b      	ldr	r3, [r7, #4]
  80001ea:	613b      	str	r3, [r7, #16]
 		  }
-//	  	  HAL_Delay(2000);
 	  	  break;
  80001ec:	e01b      	b.n	8000226 <main+0xda>
 	  case LED_GREEN:
@@ -240,7 +238,6 @@ int main(void)
  800021c:	68fb      	ldr	r3, [r7, #12]
  800021e:	613b      	str	r3, [r7, #16]
 		  }
-//	  	  HAL_Delay(3000);
 	  	  break;
  8000220:	e003      	b.n	800022a <main+0xde>
 		  break;
