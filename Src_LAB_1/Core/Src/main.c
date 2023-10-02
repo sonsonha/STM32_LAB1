@@ -27,9 +27,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-#define TIME_RED_LED 5
-#define TIME_YELLOW_LED 2
-#define TIME_GREEN_LED 3
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
