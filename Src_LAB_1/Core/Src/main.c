@@ -81,7 +81,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  enum state = {LED_RED, LED_YELLOW, LED_GREEN};
   /* USER CODE END Init */
 
   /* Configure the system clock */
