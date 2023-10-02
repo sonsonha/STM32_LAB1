@@ -69,9 +69,6 @@ int main(void)
 	int RED_LED_Count = 5;
 	int YELLOW_LED_Count = 2;
 	int GREEN_LED_Count = 3;
-	int RED_LED_Status = 1;
-	int YELLOW_LED_Status = 0;
-	int GREEN_LED_Status = 0;
 
   /* USER CODE END 1 */
 
@@ -81,7 +78,9 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  enum state = {LED_RED, LED_YELLOW, LED_GREEN};
+  enum state {LED_RED, LED_YELLOW, LED_GREEN};
+  enum state current_state = LED_RED;
+  int counter = RED_LED_Count;
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -101,46 +100,42 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-      if (RED_LED_Status == 1 && YELLOW_LED_Status == 0 && GREEN_LED_Status == 0) {
-    	  HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, RESET);
-    	  HAL_GPIO_WritePin(YELLOW_LED_GPIO_Port, YELLOW_LED_Pin, SET);
-    	  HAL_GPIO_WritePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin, SET);
-    	  RED_LED_Count --;
-    	  if (RED_LED_Count <= 0) {
-    		  HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);
-    		  RED_LED_Count = 5;
-    		  RED_LED_Status = 0;
-    		  YELLOW_LED_Status = 1;
-    		  GREEN_LED_Status = 0;
-    	  }
-      }
-      if (RED_LED_Status == 0 && YELLOW_LED_Status == 1 && GREEN_LED_Status == 0) {
-          	HAL_GPIO_WritePin(YELLOW_LED_GPIO_Port, YELLOW_LED_Pin, RESET);
-          	HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);
-          	HAL_GPIO_WritePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin, SET);
-          	  YELLOW_LED_Count --;
-          	  if (YELLOW_LED_Count <= 0) {
-          		  HAL_GPIO_WritePin(YELLOW_LED_GPIO_Port, YELLOW_LED_Pin, SET);
-          		  YELLOW_LED_Count = 2;
-          		  RED_LED_Status = 0;
-          		YELLOW_LED_Status = 0;
-          		GREEN_LED_Status = 1;
-          	  }
-            }
-      if (RED_LED_Status == 0 && YELLOW_LED_Status == 0 && GREEN_LED_Status == 1) {
-                	  HAL_GPIO_WritePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin, RESET);
-                	  HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);
-                	  HAL_GPIO_WritePin(YELLOW_LED_GPIO_Port, YELLOW_LED_Pin, SET);
-                	  GREEN_LED_Count --;
-                	  if (GREEN_LED_Count <=0) {
-                		  HAL_GPIO_WritePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin, SET);
-                		  HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, RESET);
-                		  GREEN_LED_Count = 3;
-                		  RED_LED_Status = 1;
-                		  YELLOW_LED_Status = 0;
-                		  GREEN_LED_Status = 0;
-                	  }
-                  }
+	  switch (current_state) {
+	  case LED_RED:
+		  HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, RESET);
+          HAL_GPIO_WritePin(YELLOW_LED_GPIO_Port, YELLOW_LED_Pin, SET);
+		  HAL_GPIO_WritePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin, SET);
+		  counter--;
+		  if (counter <= 0) {
+			  current_state = LED_YELLOW;
+			  counter = YELLOW_LED_Count;
+		  }
+//		  HAL_Delay(5000);
+		  break;
+	  case LED_YELLOW:
+	      HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);
+	      HAL_GPIO_WritePin(YELLOW_LED_GPIO_Port, YELLOW_LED_Pin, RESET);
+	      HAL_GPIO_WritePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin, SET);
+		  counter--;
+		  if (counter <= 0) {
+			  current_state = LED_GREEN;
+			  counter = GREEN_LED_Count;
+		  }
+//	  	  HAL_Delay(2000);
+	  	  break;
+	  case LED_GREEN:
+	      HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);
+	      HAL_GPIO_WritePin(YELLOW_LED_GPIO_Port, YELLOW_LED_Pin, SET);
+	      HAL_GPIO_WritePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin, RESET);
+		  counter--;
+		  if (counter <= 0) {
+			  current_state = LED_RED;
+			  counter = RED_LED_Count;
+		  }
+//	  	  HAL_Delay(3000);
+	  	  break;
+	  }
+
       HAL_Delay(1000);
 
     /* USER CODE END WHILE */
