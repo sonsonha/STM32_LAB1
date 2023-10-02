@@ -112,6 +112,9 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
+  int hour = 0;
+  int minute = 0;
+  int second = 0;
   /* USER CODE END Init */
 
   /* Configure the system clock */
