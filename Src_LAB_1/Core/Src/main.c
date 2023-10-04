@@ -172,9 +172,6 @@ int main(void)
   int hour = 0;
   int minute = 0;
   int second = 0;
-  int second_count = 0;
-  int minute_count = 0;
-  int reset = 0;
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -194,39 +191,26 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if (!reset) {
-		  second++;
-		   if ((second + 1)%5 == 0){
-			   second_count++;
-			   setNumberOnClock (second_count);
-			   clearNumberOnClock (second_count-1);
-			   if (second_count == minute_count || second_count == hour || minute_count == hour) {
-				   setNumberOnClock (second_count);
-			   }
-		    }
-		  if (second > 59) {
-			  second = 0;
-			  minute++;
-			  if ((minute + 1)%5 == 0) {
-				   minute_count++;
-				   setNumberOnClock (minute_count);
-				   clearNumberOnClock (minute_count-1);
-				   if (second_count == minute_count || second_count == hour || minute_count == hour) {
-				   setNumberOnClock (minute_count);
-				   }
-			  }
-		  }
-		  if (minute > 59) {
-			   hour++;
-			   setNumberOnClock (hour);
-			   clearNumberOnClock (hour-1);
-			   if (second_count == minute_count || second_count == hour || minute_count == hour) {
-			   setNumberOnClock (hour);
-			   }
-		  }
-		  if (hour > 11) {
-			  hour = 0;
-		  }
+	  second ++;
+	  if (second > 59) {
+		  minute++;
+		  second = 0;
+	  }
+	  if (minute > 59) {
+		  hour++;
+		  minute = 0;
+	  }
+	  if (hour > 11) {
+		  hour = 0;
+	  }
+	  clearALLClock();
+	  if (hour > 11 || hour < 0 || minute > 59 || minute < 0 || second > 59 || second < 0) {
+
+	  }
+	  else {
+		  setNumberOnClock (hour);
+		  setNumberOnClock (minute/5);
+		  setNumberOnClock (second/5);
 	  }
 	  HAL_Delay(1000);
 
